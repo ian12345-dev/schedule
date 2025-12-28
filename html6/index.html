@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        /* ================= RESET & BASE ================= */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* ================= HERO SECTION ================= */
+        .hero {
+            width: 100%;
+            min-height: 100vh;
+            height: 100vh;
+            background-image: url("image.jpg"); /* replace with your image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* ================= OTHER SECTIONS ================= */
+        section {
+            margin: 2rem;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        /* ================= CHATBOT ================= */
+        #chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            background-color: white;
+            border: 2px solid #007bff;
+            border-radius: 10px;
+            z-index: 1000;
+        }
+
+        #chat-header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        #chat-body {
+            padding: 10px;
+        }
+
+        /* ================= LOGIN BUTTON ================= */
+        #login-button {
+            position: fixed;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background-color: #007bff;
+            color: white;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            border-radius: 8px 0 0 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            z-index: 9999; /* ensure it is on top of everything */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Slide out on hover */
+        #login-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-50%) translateX(-10px); /* slide left 10px */
+        }
+
+        /* ================= RESPONSIVE LOGIN BUTTON ================= */
+        @media (max-width: 768px) {
+            #login-button {
+                padding: 0.7rem 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #login-button {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- LOGIN BUTTON -->
+<a href="login.html" id="login-button">Login</a>
+
+<main>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <!-- Full-screen image only, no text or button -->
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>We are a dedicated team providing high-quality services.</p>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <ul>
+            <li>Web Development</li>
+            <li>Design Consulting</li>
+            <li>SEO Optimization</li>
+            <li>Customer Support</li>
+        </ul>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: info@mywebsite.com</p>
+        <p>Phone: (123) 456-7890</p>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; 2025 My Website. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

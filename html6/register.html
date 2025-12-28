@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .register-container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            width: 320px;
+            text-align: center;
+        }
+
+        .register-container h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .register-container input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .register-container button {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .register-container button:hover {
+            background-color: #218838;
+        }
+
+        .login-link {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="register-container">
+    <h2>Create Account</h2>
+
+    <input type="text" id="newUsername" placeholder="Create Username">
+    <input type="password" id="newPassword" placeholder="Create Password">
+
+    <button onclick="register()">Register</button>
+
+    <div class="login-link">
+        Already have an account?
+        <a href="login.html">Login here</a>
+    </div>
+</div>
+
+<script>
+function register() {
+    const username = document.getElementById("newUsername").value;
+    const password = document.getElementById("newPassword").value;
+
+    if (username === "" || password === "") {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    // Save account
+    localStorage.setItem("username", username);
+    localStorage.setItem("password", password);
+
+    alert("Registration successful! Please login.");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
