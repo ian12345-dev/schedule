@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Schedule</title>
+<style>
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f8f9fa; padding: 2rem; }
+    h1, h2 { margin-top: 1rem; }
+    ul { margin-bottom: 1rem; }
+    li { margin-bottom: 0.5rem; }
+    input, button { padding: 0.3rem 0.5rem; margin: 0.2rem 0; }
+    button { cursor: pointer; }
+</style>
+</head>
+<body>
+
+<h1>My Schedule</h1>
+<div id="user-schedule"></div>
+<button onclick="logout()">Logout</button>
+
+<script>
+// Check if logged in
+let loggedIn = JSON.parse(localStorage.getItem("loggedInUser"));
+if (!loggedIn) {
+    alert("You must log in first.");
+    window.location.href = "login.html";
+}
+
+// Get users array from localStorage
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+// Find logged-in user's index
+let userIndex = users.findIndex(u => u.username === loggedIn.username);
+
+if (userIndex === -1) {
+    alert("User not found!");
+    window.location.href = "login.html";
+}
+
+function renderSchedule() {
+    const container = document.getElementById("user-schedule");
+    container.innerHTML = "";  // Clear any existing content
+
+    // Ensure user has a schedule array initialized
+    if (!users[userIndex].schedule) {
+        users[userIndex].schedule = [];  // Initialize schedule if undefined
+    }
+
+    const ul = document.createElement("ul");
+    users[userIndex].schedule.forEach((item, i) => {
+        const li = document.createElement("li");
+        li.textContent = item + " ";
+        
+        // Create delete button for each schedule item
+        const delBtn = document.createElement("button");
+        delBtn.textContent = "Delete";
+        delBtn.onclick = () => deleteItem(i);  // Delete item at index i
+        li.appendChild(delBtn);
+        
+        ul.appendChild(li);
+    });
+
+    container.appendChild(ul);
+
+    // Input to add new schedule item
+    const input = document.createElement("input");
+    input.placeholder = "Add new item";
+    input.id = "new-item";
+
+    const addBtn = document.createElement("button");
+    addBtn.textContent = "Add";
+    addBtn.onclick = addItem;  // Call addItem function to add a new schedule item
+
+    container.appendChild(input);
+    container.appendChild(addBtn);
+}
+
+// Add a new item to the schedule
+function addItem() {
+    const input = document.getElementById("new-item");
+    if (!input.value.trim()) return;  // Prevent adding empty items
+    users[userIndex].schedule.push(input.value.trim());
+    localStorage.setItem("users", JSON.stringify(users));
+    input.value = "";  // Clear input field
+    renderSchedule();  // Re-render schedule to show the new item
+}
+
+// Delete a schedule item
+function deleteItem(i) {
+    users[userIndex].schedule.splice(i, 1);  // Remove item from the array
+    localStorage.setItem("users", JSON.stringify(users));  // Save updated users array
+    renderSchedule();  // Re-render schedule to show updated items
+}
+
+// Logout function to remove logged-in user data and redirect to login page
+function logout() {
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "login.html";  // Redirect to login page
+}
+
+renderSchedule();  // Render the schedule when the page loads
+</script>
+
+</body>
+</html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
+
     <style>
         /* ================= RESET & BASE ================= */
         html, body {
@@ -23,60 +24,26 @@
         /* ================= HERO SECTION ================= */
         .hero {
             width: 100%;
-            min-height: 100vh;
             height: 100vh;
-            background-image: url("image.jpg"); /* replace with your image */
+            background-image: url("image.jpg");
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
             background-attachment: fixed;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            padding: 0;
-            margin: 0;
         }
 
-        /* ================= OTHER SECTIONS ================= */
         section {
             margin: 2rem;
             padding: 1rem;
-            background-color: white;
+            background: white;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         footer {
-            background-color: #343a40;
+            background: #343a40;
             color: white;
             text-align: center;
             padding: 1rem 0;
-        }
-
-        /* ================= CHATBOT ================= */
-        #chatbot {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 300px;
-            background-color: white;
-            border: 2px solid #007bff;
-            border-radius: 10px;
-            z-index: 1000;
-        }
-
-        #chat-header {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        #chat-body {
-            padding: 10px;
         }
 
         /* ================= LOGIN BUTTON ================= */
@@ -85,79 +52,154 @@
             top: 50%;
             right: 0;
             transform: translateY(-50%);
-            background-color: #007bff;
+            background: #007bff;
             color: white;
             padding: 1rem 1.5rem;
             text-decoration: none;
             border-radius: 8px 0 0 8px;
             font-weight: bold;
-            font-size: 1rem;
-            z-index: 9999; /* ensure it is on top of everything */
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            z-index: 9999;
         }
 
-        /* Slide out on hover */
         #login-button:hover {
-            background-color: #0056b3;
-            transform: translateY(-50%) translateX(-10px); /* slide left 10px */
+            background: #0056b3;
         }
 
-        /* ================= RESPONSIVE LOGIN BUTTON ================= */
-        @media (max-width: 768px) {
-            #login-button {
-                padding: 0.7rem 1rem;
-                font-size: 0.9rem;
-            }
+        /* ================= CHATBOT ================= */
+        #chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 99999; /* FIX: Ensure on top */
+            font-size: 14px;
+            overflow: hidden;
         }
 
-        @media (max-width: 480px) {
-            #login-button {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.8rem;
-            }
+        #chat-header {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        #chat-body {
+            display: none;
+            background: white;
+            max-height: 250px;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        #chat-messages {
+            margin-bottom: 10px;
+        }
+
+        .bot, .user {
+            margin-bottom: 8px;
+        }
+
+        .bot {
+            color: #007bff;
+        }
+
+        .user {
+            text-align: right;
+            color: #333;
+        }
+
+        #chat-input {
+            width: 100%;
+            padding: 8px;
+            border: none;
+            border-top: 1px solid #ccc;
+            outline: none;
         }
     </style>
 </head>
 
 <body>
 
-<!-- LOGIN BUTTON -->
 <a href="login.html" id="login-button">Login</a>
 
-<main>
+<section class="hero"></section>
 
-    <!-- HERO SECTION -->
-    <section id="home" class="hero">
-        <!-- Full-screen image only, no text or button -->
-    </section>
+<section>
+    <h2>About Us</h2>
+    <p>We are a dedicated team providing high-quality services.</p>
+</section>
 
-    <section id="about">
-        <h2>About Us</h2>
-        <p>We are a dedicated team providing high-quality services.</p>
-    </section>
+<section>
+    <h2>Our Services</h2>
+    <ul>
+        <li>Web Development</li>
+        <li>Design Consulting</li>
+        <li>SEO Optimization</li>
+        <li>Customer Support</li>
+    </ul>
+</section>
 
-    <section id="services">
-        <h2>Our Services</h2>
-        <ul>
-            <li>Web Development</li>
-            <li>Design Consulting</li>
-            <li>SEO Optimization</li>
-            <li>Customer Support</li>
-        </ul>
-    </section>
-
-    <section id="contact">
-        <h2>Contact Us</h2>
-        <p>Email: info@mywebsite.com</p>
-        <p>Phone: (123) 456-7890</p>
-    </section>
-
-</main>
+<section>
+    <h2>Contact</h2>
+    <p>Email: info@mywebsite.com</p>
+    <p>Phone: (123) 456-7890</p>
+</section>
 
 <footer>
-    <p>&copy; 2025 My Website. All rights reserved.</p>
+    <p>&copy; 2025 My Website</p>
 </footer>
+
+<!-- ================= CHATBOT ================= -->
+<div id="chatbot">
+    <div id="chat-header" onclick="toggleChat()">💬 Chat with us</div>
+    <div id="chat-body">
+        <div id="chat-messages">
+            <div class="bot">Bot: Hi! How can I help you?</div>
+        </div>
+        <input type="text" id="chat-input" placeholder="Type a message..." onkeydown="sendMessage(event)">
+    </div>
+</div>
+
+<script>
+function toggleChat() {
+    const body = document.getElementById("chat-body");
+    if (body.style.display === "block") {
+        body.style.display = "none";
+    } else {
+        body.style.display = "block";
+    }
+}
+
+function sendMessage(event) {
+    if (event.key === "Enter") {
+        const input = document.getElementById("chat-input");
+        const message = input.value.trim();
+        if (message === "") return;
+
+        const messages = document.getElementById("chat-messages");
+
+        messages.innerHTML += `<div class="user">You: ${message}</div>`;
+        input.value = "";
+
+        let reply = "Sorry, I didn't understand that.";
+
+        const msg = message.toLowerCase();
+        if (msg.includes("hello") || msg.includes("hi")) {
+            reply = "Hello! 👋 How can I help you today?";
+        } else if (msg.includes("services")) {
+            reply = "We offer Web Development, Design Consulting, SEO, and Support.";
+        } else if (msg.includes("contact")) {
+            reply = "You can contact us at info@mywebsite.com";
+        }
+
+        messages.innerHTML += `<div class="bot">Bot: ${reply}</div>`;
+        messages.scrollTop = messages.scrollHeight;
+    }
+}
+</script>
 
 </body>
 </html>
